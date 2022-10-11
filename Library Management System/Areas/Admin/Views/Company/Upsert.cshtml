@@ -1,0 +1,74 @@
+﻿@model LibraryBooks.Model.Company
+
+
+<form method="post" asp-action="Upsert">
+    <input asp-for="@Model.Id" hidden />
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="border p-4 mt-5 row">
+                <div class="col-12 pb-2">
+                    <h2 class="text-primary">@(Model.Id != 0 ? "Create" : "Update") Company</h2>
+                    <hr />
+                </div>
+                @*<div asp-validation-summary="All"></div>*@
+                <div class="mb-2">
+                    <label asp-for="@Model.Name"></label>
+                    <input type="" asp-for="@Model.Name" class="form-control" />
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-2">
+                    <label asp-for="@Model.StreeAddress"></label>
+                    <input asp-for="@Model.StreeAddress" class="form-control">
+                    <span asp-validation-for="@Model.StreeAddress" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="@Model.City"></label>
+                    <input type="" asp-for="@Model.City" class="form-control" />
+                    <span asp-validation-for="@Model.City" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="@Model.State"></label>
+                    <input type="" asp-for="@Model.State" class="form-control" />
+                    <span asp-validation-for="@Model.State" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="@Model.PostalCode"></label>
+                    <input type="" asp-for="@Model.PostalCode" class="form-control" />
+                    <span asp-validation-for="@Model.PostalCode" class="text-danger"></span>
+                </div>
+            
+                <div class="col-12">
+                    @if (Model.Id != 0)
+                    {
+                        <button type="submit" class="btn btn-primary" style="width:150px;">Update</button>
+                    }
+                    else
+                    {
+                        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px;">Create</button>
+                    }
+                    <a asp-controller="Company" asp-action="Index" class="btn btn-secondary" style="width:150px;">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+
+    }
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+            toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+        });
+    </script>
+    }

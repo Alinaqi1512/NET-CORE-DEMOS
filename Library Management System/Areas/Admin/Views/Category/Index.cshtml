@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Category>;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_NotificationView" />
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Categories List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle"></i> &nbsp; Create New Category</a>
+        </div>
+
+    </div>
+
+
+
+<table class="table table-bordered table-striped" style="width:100%;">
+    <thead>
+        <tr>
+            <th class="text-white">Category Name</th>
+            <th class="text-white">
+                Display Orders
+            </th>
+            <th class="text-white">
+               Creation Time
+            </th>
+            <th></th>
+        </tr>      
+    </thead>
+    <tbody>
+        @foreach(var oj in Model){
+            <tr class="text-white">
+                <td width="30%" class="text-white">@oj.Name</td>
+                <td width="10%" class="text-white">@oj.Orders</td>
+                <td width="30%" class="text-white">@oj.CreatedTime</td>
+                <td class="text-white">
+                    <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@oj.Id" class="btn btn-primary mx-2 bg-secondary"><i class="bi bi-pencil-square"></i> Edit</a>
+                    </div>
+                </td>
+                 <td class="text-white">
+                     <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@oj.Id" class="btn btn-danger mx-2"><i class="bi bi-trash"></i> Delete</a>
+                     </div>
+                 </td>
+            </tr>     
+        }
+    </tbody>
+</table>
+
+</div>
